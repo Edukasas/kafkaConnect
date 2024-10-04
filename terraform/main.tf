@@ -32,9 +32,9 @@ resource "google_service_account" "service_account" {
 }
 
 resource "google_storage_bucket_iam_binding" "binding" {
-  bucket     = "storage-bucket-${random_pet.random_suffix.id}"
-  role       = "roles/storage.admin"
-  members    = [
+  bucket = "storage-bucket-${random_pet.random_suffix.id}"
+  role   = "roles/storage.admin"
+  members = [
     "serviceAccount:${google_service_account.service_account.email}",
   ]
   depends_on = [google_storage_bucket.storage_bucket, google_service_account.service_account]
@@ -48,7 +48,7 @@ resource "google_container_cluster" "kubernetes_cluster" {
     machine_type    = "n1-standard-4"
     service_account = google_service_account.service_account.email
   }
-  depends_on         = [google_project_service.container_service, google_storage_bucket_iam_binding.binding]
+  depends_on = [google_project_service.container_service, google_storage_bucket_iam_binding.binding]
 }
 
 resource "google_project_service" "container_service" {
