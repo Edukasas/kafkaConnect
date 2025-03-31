@@ -36,9 +36,15 @@ spec:
             --throughput 1 \
             --producer.config /mnt/kafka.properties \
             --num-records 230400
+        env:
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /mnt/gcp/kafkakey.json
         volumeMounts:
         - name: kafka-properties
           mountPath: /mnt
+          readOnly: true
+        - name: gcp-service-account
+          mountPath: /mnt/gcp
           readOnly: true
         resources:
           requests:
@@ -51,6 +57,9 @@ spec:
         - name: kafka-properties # Create secret with name `kafka-client-config` with client configurations
           secret:
             secretName: kafka-client-config
+        - name: gcp-service-account
+          secret:
+            secretName: gcp-credentials
 ---
 apiVersion: v1
 kind: Service

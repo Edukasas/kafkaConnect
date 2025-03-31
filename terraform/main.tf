@@ -49,6 +49,7 @@ resource "google_container_cluster" "kubernetes_cluster" {
     service_account = google_service_account.service_account.email
   }
   depends_on = [google_project_service.container_service, google_storage_bucket_iam_binding.binding]
+  deletion_protection = false
 }
 
 resource "google_project_service" "container_service" {

@@ -1,0 +1,15 @@
+{
+  "name": "expedia",
+  "config": {
+  "connector.class": "io.confluent.connect.gcs.GcsSourceConnector",
+  "tasks.max": "1",
+  "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+  "mode": "GENERIC",
+  "topics.dir": "M11kafkaconnect/M11kafkaconnect/topics/expedia",
+  "format.class": "io.confluent.connect.gcs.format.avro.AvroFormat",
+  "gcs.bucket.name": "storage-bucket-thankful-halibut",
+  "value.converter.schemas.enable": "false",
+  "confluent.topic.bootstrap.servers" : "localhost:9092",
+  "confluent.topic.replication.factor" : "3"
+ }
+}
