@@ -43,9 +43,6 @@ spec:
         - name: kafka-properties
           mountPath: /mnt
           readOnly: true
-        - name: gcp-service-account
-          mountPath: /mnt/gcp
-          readOnly: true
         resources:
           requests:
             memory: 400Mi # 768Mi
@@ -57,9 +54,6 @@ spec:
         - name: kafka-properties # Create secret with name `kafka-client-config` with client configurations
           secret:
             secretName: kafka-client-config
-        - name: gcp-service-account
-          secret:
-            secretName: gcp-credentials
 ---
 apiVersion: v1
 kind: Service
